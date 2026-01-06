@@ -27,6 +27,7 @@
 |prefecture_id|integer|null: false|
 |shipping_day_id|integer|null: false|
 |price|integer|null: false|
+|user|references|null: false, foreign_key: true|
 
 ## items
 - belongs_to :user
