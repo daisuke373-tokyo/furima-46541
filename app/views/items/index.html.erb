@@ -130,12 +130,16 @@
       <% if @items.present? %>
         <% @items.each do |item| %>
           <li class='list'>
+            
+            <%# itemの詳細ページへのパスのリンク %>
             <%= link_to item_path(item) do %>
+
             <%# 画像の表示 %>
             <div class='item-img-content'>
               <% if item.image.present? %>
                 <%= image_tag item.image, class: "item-img" %>
               <% end %>
+            <%# 画像の表示 %>
 
               <%# 商品が売れていればsold outを表示する商品購入機能実装後に本機能を実装 %>
               <%# 将来的に売却済みフラグがある場合はここで条件分岐 %>
@@ -150,7 +154,9 @@
               <h3 class='item-name'>
                 <%= item.item_name %>
               </h3>
-                <%# 商品の価格と送料負担 %>
+              <%# 商品名 %>
+
+              <%# 商品の価格と送料負担 %>
               <div class='item-price'>
                 <span><%= item.price %>円<br><%= item.shipping_fee.name %></span>
                 <div class='star-btn'>
@@ -158,6 +164,8 @@
                   <span class='star-count'>0</span>
                 </div>
               </div>
+              <%# 商品の価格と送料負担 %>
+
             </div>
             <% end %>
           </li>
