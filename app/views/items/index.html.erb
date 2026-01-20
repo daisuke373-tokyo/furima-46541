@@ -130,9 +130,10 @@
       <% if @items.present? %>
         <% @items.each do |item| %>
           <li class='list'>
-            
+
             <%# itemの詳細ページへのパスのリンク %>
-            <%= link_to item_path(item) do %>
+            <%# <%= link_to item_path(item) do %> 
+            <%= link_to "#" do %>
 
             <%# 画像の表示 %>
             <div class='item-img-content'>
