@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_fee
   belongs_to :shipping_day
   has_one_attached :image
-  has_one :purchase
+  # has_one :purchase
 
   validates :item_name, presence: true
   validates :item_description, presence: true

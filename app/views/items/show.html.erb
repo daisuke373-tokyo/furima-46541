@@ -10,7 +10,7 @@
       <%= image_tag @item.image, class:"item-box-img" %>
 
       <%# 商品売却済み反映 %>
-      <% if @item.purchase.present? %>
+      <%# <% if @item.purchase.present? %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
@@ -28,7 +28,7 @@
     </div>
 
     <%# ログインユーザーの判別と出品中商品の判定 %>
-    <% if user_signed_in? && @item.purchase.nil? %>
+    <% if user_signed_in? %>
       <% if current_user.id == @item.user.id %>
         <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
         <p class="or-text">or</p>
@@ -107,9 +107,9 @@
       後ろの商品 ＞
     </a>
   </div>
-  <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
+  
   <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
-  <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
+  
 </div>
 
 <%= render "shared/footer" %>
