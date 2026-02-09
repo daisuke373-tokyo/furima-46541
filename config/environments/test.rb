@@ -47,6 +47,9 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  # Avoid async query execution in tests to prevent MySQL connection contention.
+  config.active_record.async_query_executor = nil
+
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
 
