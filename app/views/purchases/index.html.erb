@@ -1,7 +1,5 @@
 <%= render "shared/second-header"%>
 
-<script type="text/javascript" src="https://js.pay.jp/v2/pay.js"></script>
-
 <div class='transaction-contents'>
   <div class='transaction-main'>
     <h1 class='transaction-title-text'>
@@ -34,6 +32,7 @@
     <%# /支払額の表示 %>
 
     <%= form_with model: @purchase_address, url: item_purchases_path(@item), local: true, id: "purchase_address_form" do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
     <%= f.hidden_field :token %>
     <%# カード情報の入力 %>
     <div class='credit-card-form'>

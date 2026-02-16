@@ -2,7 +2,10 @@ const pay = () => {
   const form = document.getElementById('purchase_address_form');
   if (!form) return;
 
-  const payjp = Payjp('pk_test_9663206946485df0c793aefe'); // ←ここに公開鍵を貼り付ける
+  const publicKey = gon.payjp_public_key;
+  if (!publicKey) return;
+
+  const payjp = Payjp(publicKey) // PAY.JPテスト公開鍵
   const elements = payjp.elements();
   
   const numberElement = elements.create('cardNumber');
@@ -14,23 +17,22 @@ const pay = () => {
   cvcElement.mount('#cvc-form');
 
   form.addEventListener("submit", (e) => {
+    e.preventDefault();
     payjp.createToken(numberElement).then(function(response) {
       if (response.error) {
         // エラーハンドリング
       } else {
         const token = response.id;
-        const renderDom = document.getElementById('purchase_address_form');
-        const tokenObj = `<input value=${token} name='token' type='hidden'>`;
-        renderDom.insertAdjacentHTML('beforeend', tokenObj);
-
+        const tokenInput = document.getElementById('purchase_address_token');
+        tokenInput.value = token;
       }
       numberElement.clear();
       expiryElement.clear();
       cvcElement.clear();
       document.getElementById('purchase_address_form').submit();
     });
-    e.preventDefault();
   });
 };
 
 window.addEventListener("turbo:load", pay);
+window.addEventListener("turbo:render", pay);

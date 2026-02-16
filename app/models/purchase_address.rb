@@ -4,13 +4,16 @@ class PurchaseAddress
                 :token
 
   with_options presence: true do
-    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Include hyphen(-)' }
+    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Include hyphen(-)', allow_blank: true }
     validates :prefecture_id, numericality: { other_than: 1, message: 'must be selected' }
     validates :city
     validates :address
-    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid. Input only number' }
+    validates :phone_number, format: { with: /\A\d+\z/, message: 'is invalid. Input only number', allow_blank: true },
+                             length: { minimum: 10, too_short: 'is invalid. Input less than 10 digits',
+                                       maximum: 11, too_long: 'is invalid. Input more than 11 digits', allow_blank: true }
     validates :user_id
     validates :item_id
+    validates :token
   end
 
   def save
