@@ -5,7 +5,7 @@ const pay = () => {
   const publicKey = gon.payjp_public_key;
   if (!publicKey) return;
 
-  const payjp = Payjp(publicKey) // PAY.JPテスト公開鍵
+  const payjp = Payjp(publicKey) // PAY.JP公開鍵
   const elements = payjp.elements();
   
   const numberElement = elements.create('cardNumber');
